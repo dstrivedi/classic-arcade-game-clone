@@ -31,3 +31,7 @@ You need the modern broswers that supports the HTML5 and keybord with arrow keys
 - https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
 - https://lipis.github.io/bootstrap-sweetalert/
 - https://www.w3schools.com/jsref/met_win_settimeout.asp
+
+### Demo of game
+
+https://dstrivedi.github.io/classic-arcade-game-clone/.

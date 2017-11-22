@@ -18,15 +18,15 @@ Enemy.prototype.update = function(dt) {
     } else {
         this.x = -5;
     }
-    collision(this);
+    this.collision();
 };
 
 //When enemy and player collided
-var collision = function(enemy) {
-     if(enemy.x < player.x + 50 &&
-        enemy.x + 40 > player.x &&
-        enemy.y < player.y + 50 &&
-        enemy.y + 40 > player.y) {
+Enemy.prototype.collision = function() {
+     if(this.x < player.x + 50 &&
+        this.x + 40 > player.x &&
+        this.y < player.y + 50 &&
+        this.y + 40 > player.y) {
         player.reset(200,350);
     } else {
         player.update;
@@ -49,18 +49,18 @@ var Player = function(x,y) {
 Player.prototype.update = function() {
     if(player.y <= 0) {
         //$('#score').text(score);
-        displayScore();
+        this.displayScore();
     }
 };
 
 //Display score
-var displayScore =  function() {
+Player.prototype.displayScore =  function() {
     score++;
     $('#score').text(score);
     if(score == 6) {
         swal("Easy level crossed!!cross Difficult level to win the game.");
         $('#level').text("Difficult");
-        increaseEnemyAndSpeed();
+        enemies.increaseEnemyAndSpeed();
     } else if(score === 10) {
         swal("Well done!!You crossed both levels.");
         setTimeout(function() {
@@ -96,8 +96,8 @@ Player.prototype.handleInput = function(direction) {
 
 //reset player position
 Player.prototype.reset = function(x,y) {
-    player.x = x;
-    player.y = y;
+    this.x = x;
+    this.y = y;
 };
 
 //initialize variables
@@ -105,7 +105,7 @@ var allEnemies = [];
 var enemies;
 
 //increase enemies and speed when player makes more than 5 score
-var increaseEnemyAndSpeed = function() {
+Enemy.prototype.increaseEnemyAndSpeed = function() {
     for(var i = 0;i < 2;i++) {
         var speed= 110 * Math.random();
         enemies = new Enemy(-100,70 + (80 * i),speed);
